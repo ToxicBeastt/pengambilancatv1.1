@@ -26,19 +26,25 @@
                         type="number"
                         v-model="temp.jumlah"
                         required
+                        :min=0
+                        :max=5
                     ></b-form-input>
                 </b-form-group>
-                <b-button type="submit" variant="primary">Submit</b-button>
+                <b-button type="submit" variant="primary">Input</b-button>
                 <b-button type="reset" variant="danger">Reset</b-button>
             </b-form>
+            <div style="margin-top:2vh">
             Keranjang
             <div v-if="!keranjang.length">
                 Kosong
             </div>
-            <div v-else><b-table :items="keranjang"></b-table><b-button type="submit" variant="primary">Submit</b-button></div>
+            <div v-else>
+                <b-table :items="keranjang"></b-table>
+                <b-button type="submit" variant="primary">Submit Request</b-button>
+                </div>
+            </div>
+            
         </div>
-        Data Barang
-        <b-table striped hover :items="items"></b-table>
     </div>
 </template>
 
@@ -46,32 +52,6 @@
 export default {
     data() {
         return {
-            items: [
-                {
-                    code: "C01",
-                    name:
-                        "Nippon Paint / Cat Tembok / Vinilex 300 / Vinilex putih / Ojek",
-                    jenis: "Cat Kayu",
-                    satuan: "Liter",
-                    netto: 5
-                },
-                {
-                    code: "C02",
-                    name:
-                        "Nippon Paint / Cat Tembok / Vinilex 300 / Vinilex putih / Ojek",
-                    jenis: "Cat Kayu",
-                    satuan: "Liter",
-                    netto: 5
-                },
-                {
-                    code: "C03",
-                    name:
-                        "Nippon Paint / Cat Tembok / Vinilex 300 / Vinilex putih / Ojek",
-                    jenis: "Cat Kayu",
-                    satuan: "Liter",
-                    netto: 5
-                }
-            ],
             temp: {
                 jenis_gitar: null,
                 jumlah: 0

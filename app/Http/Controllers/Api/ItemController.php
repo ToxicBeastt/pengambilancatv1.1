@@ -40,8 +40,7 @@ class ItemController extends Controller
         $validateData = $request->validate([
             'code' => 'required',
             'nama' => 'required',
-            'merk' => 'required',
-            'satuan' => 'required',
+            'suplier' => 'required',
             'jenis' => 'required',
             'netto' => 'required|numeric|min:0|not_in:0',
         ]);
@@ -50,10 +49,9 @@ class ItemController extends Controller
 
         $gudang->code = $request->input('code');
         $gudang->nama = $request->input('nama');
-        $gudang->merk = $request->input('merk');
-        $gudang->satuan = $request->input('satuan');
+        $gudang->suplier = $request->input('suplier');
         $gudang->jenis = $request->input('jenis');
-        $gudang->netto = $request->input('netto');
+        $gudang->netto = $request->input('netto') * 1000;
         
         $gudang->save();
     }

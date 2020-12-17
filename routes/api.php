@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('/Item', 'Api\ItemController');
+Route::apiResource('/Gitar', 'Api\GitarController');

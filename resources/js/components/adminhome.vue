@@ -14,8 +14,13 @@
                     ></b-col
                 >
                 <b-col
-                    ><router-link to="/request"
-                        ><b-button>List Request</b-button></router-link
+                    ><router-link to="/inputresep"
+                        ><b-button>Input Resep</b-button></router-link
+                    ></b-col
+                >
+                <b-col
+                    ><router-link to="/listresep"
+                        ><b-button>List Resep</b-button></router-link
                     ></b-col
                 >
                 <b-col

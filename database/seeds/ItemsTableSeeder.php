@@ -16,12 +16,18 @@ class ItemsTableSeeder extends Seeder
     public function run()
     {
         DB::table('items')->insert([
-            'code' => Str::random(3),
-            'nama' => Str::random(20),
-            'merk' => Str::random(8),
-            'satuan' => 'L',
-            'jenis' => Str::random(5),
-            'netto' => 5,
+            'code' => 'HV',
+            'nama' => 'PUSS-51221',
+            'suplier' => 'PROPAN',
+            'jenis' => 'SEALER',
+            'netto' => 20000,
+        ]);
+        DB::table('items')->insert([
+            'code' => 'HV',
+            'nama' => 'PUH-57104/13SD',
+            'suplier' => 'PROPAN',
+            'jenis' => 'SEALER',
+            'netto' => 5000,
         ]);
     }
 }

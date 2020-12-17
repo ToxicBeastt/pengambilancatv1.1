@@ -32,14 +32,14 @@
 
                 <b-form-group
                     id="input-group-3"
-                    label="Merk Barang:"
+                    label="Suplier Barang:"
                     label-for="input-3"
                 >
                     <b-form-input
                         id="input-3"
-                        v-model="form.merk"
+                        v-model="form.suplier"
                         required
-                        placeholder="Masukan Merk Barang"
+                        placeholder="Masukan Suplier Barang"
                     ></b-form-input>
                 </b-form-group>
 
@@ -52,18 +52,6 @@
                         id="input-4"
                         v-model="form.jenis"
                         :options="JenisBarang"
-                        required
-                    ></b-form-select>
-                </b-form-group>
-                <b-form-group
-                    id="input-group-5"
-                    label="Satuan:"
-                    label-for="input-5"
-                >
-                    <b-form-select
-                        id="input-5"
-                        v-model="form.satuan"
-                        :options="satuanNetto"
                         required
                     ></b-form-select>
                 </b-form-group>
@@ -95,18 +83,17 @@ export default {
             form: {
                 code: "",
                 nama: "",
-                merk: null,
+                suplier: null,
                 jenis: null,
-                satuan: null,
                 netto: 0
             },
             satuanNetto: [{ text: "Select One", value: null }, "L"],
             JenisBarang: [
                 { text: "Select One", value: null },
-                "Sealer",
+                "Base Coat/Sealer",
                 "Warna",
-                "Top Coat",
-                "Thinner"
+                "Top Coat Gloss",
+                "Top Coat Doff"
             ],
         };
     },
@@ -118,10 +105,10 @@ export default {
                     this.form.code = "";
                     this.form.nama = "";
                     this.form.jenis = null;
-                    this.form.merk = null;
-                    this.form.satuan = null;
+                    this.form.suplier = null;
                     this.form.netto = 0;
                     console.log(response);
+                    this.$alert("Resep Berhasil di Input");
                 })
                 .catch(error => {
                     console.log(error);
@@ -132,8 +119,7 @@ export default {
             this.form.code = "";
             this.form.nama = "";
             this.form.jenis = null;
-            this.form.merk = null;
-            this.form.satuan = null;
+            this.form.suplier = null;
             this.form.netto = 0;
         }
     }

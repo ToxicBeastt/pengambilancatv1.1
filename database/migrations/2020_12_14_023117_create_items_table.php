@@ -17,8 +17,7 @@ class CreateitemsTable extends Migration
             $table->id()->unique();
             $table->string('code');
             $table->string('nama');
-            $table->string('merk');
-            $table->string('satuan');
+            $table->string('suplier');
             $table->string('jenis');
             $table->integer('netto');
             $table->timestamps();

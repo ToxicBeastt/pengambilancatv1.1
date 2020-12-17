@@ -13,6 +13,7 @@ axios.defaults.baseURL = 'http://localhost:8000/api/'
 
 Vue.use(VueRouter)
 
+
 // Router Imported
 import {routes} from './routes';
 
@@ -24,6 +25,12 @@ window.Notification = Notification
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
+
+// Imported Simple-Alert
+import VueSimpleAlert from "vue-simple-alert";
+
+Vue.use(VueSimpleAlert);
+
 
 const router = new VueRouter({
     routes,

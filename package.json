@@ -27,6 +27,7 @@
         "bootstrap-vue": "^2.21.0",
         "noty": "^3.2.0-beta",
         "vue-router": "^3.4.9",
+        "vue-simple-alert": "^1.1.1",
         "vuex": "^3.6.0"
     }
 }
