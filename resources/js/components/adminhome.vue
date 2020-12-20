@@ -23,13 +23,11 @@
                         ><b-button>List Resep</b-button></router-link
                     ></b-col
                 >
-                <b-col
-                    ><router-link to="/ambilcat"
-                        ><b-button>Ambil Cat</b-button></router-link
-                    ></b-col
-                >
             </b-row>
         </b-container>
+
+        Editnya Belum CSS bebas lah mau diganti juga button asal router-linknya dipake
+        Untuk Ambil cat belum banget baru front-endnya doang. itu juga belum ada maximum ngambilnya
     </div>
 </template>
 <script>

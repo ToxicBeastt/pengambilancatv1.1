@@ -18,25 +18,24 @@
 
             <div class="form-group" v-for="(input, k) in inputs.cat" :key="k">
                 <b-form-group
-                    id="input-group-1"
-                    label="Cat:"
-                    label-for="input-1"
-                    description=""
+                    id="input-group-4"
+                    label="Cat :"
+                    label-for="input-4"
                 >
-                    <b-form-input
-                        id="input-1"
+                    <b-form-select
+                        id="input-4"
                         v-model="inputs.cat[k].name"
+                        :options="listdata"
                         required
-                        placeholder="Masukan Cat"
-                    ></b-form-input>
+                    ></b-form-select>
                 </b-form-group>
                 <b-form-group
-                    id="input-group-6"
+                    id="input-group-5"
                     label="Pemakaian :"
-                    label-for="input-6"
+                    label-for="input-5"
                 >
                     <b-form-input
-                        id="input-6"
+                        id="input-5"
                         type="number"
                         v-model="inputs.cat[k].use"
                         required
@@ -62,7 +61,7 @@
         <b-card class="mt-3" header="Form Data Result">
             <pre class="m-0">{{ inputs }}</pre>
         </b-card>
-        {{ form}}
+        {{form}}
     </div>
 </template>
 <script>
@@ -79,13 +78,27 @@ export default {
             forms:{
                 codemerk: "",
                 resep: ""
-            }
+            },
+            barang:[],
         };
+    },
+    mounted() {
+        this.getitem();
     },
     computed: {
         form() {
             return this.combinedata(this.inputs.cat);
-        }
+        },
+        listdata(){
+            var x = []
+            if(this.barang.length > 0){
+                for (var i = 0; i < this.barang.length; i++) {
+                    x.push(this.barang[i].nama);
+                }
+            }
+
+            return x
+        },
     },
     methods: {
         add() {
@@ -126,6 +139,7 @@ export default {
                 .then(response => {
                     console.log(response);
                     this.$alert("Resep Berhasil di Input");
+                    this.$router.push({ name: 'adminhome' });
                 })
                 .catch(error => {
                     console.log(error);

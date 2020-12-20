@@ -13,7 +13,8 @@ import axios from "axios";
 export default {
     data() {
         return {
-            fields: ['id', 'code','nama','suplier','jenis','netto'],
+
+            fields: [{key: 'nama', sortable:true},{key: 'suplier', sortable:false},{key: 'netto', sortable:true},{key: 'jenis', sortable:true}],
             barang: null
         };
     },

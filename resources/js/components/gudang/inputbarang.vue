@@ -57,7 +57,7 @@
                 </b-form-group>
                 <b-form-group
                     id="input-group-6"
-                    label="Netto:"
+                    label="Netto (Satuan Liter) :"
                     label-for="input-6"
                 >
                     <b-form-input
