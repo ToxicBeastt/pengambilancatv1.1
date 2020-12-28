@@ -16,7 +16,8 @@ class CreateGitarsTable extends Migration
         Schema::create('gitars', function (Blueprint $table) {
             $table->id()->unique();
             $table->string('codemerk');
-            $table->string('resep');
+            $table->string('cat');
+            $table->double('pemakaian');
             $table->timestamps();
         });
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Item;
+use DB;
+
 
 class ItemController extends Controller
 {
@@ -64,7 +66,8 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = DB::table('items')->where('id',$id)->first();
+        return response()->json($item);
     }
 
     /**
@@ -98,6 +101,9 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = DB::table('items')->where('id', $id)->first();
+        if($item){
+            DB::table('items')->where('id', $id)->delete();
+        }
     }
 }

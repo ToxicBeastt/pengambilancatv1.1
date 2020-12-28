@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Gitar extends Model
 {
     protected $fillable = [
-        'codemerk','tipe','resep'
+        'codemerk','cat','pemakaian'
     ];
 }

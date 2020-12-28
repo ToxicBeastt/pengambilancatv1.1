@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Gitar;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use DB;
 
 class GitarController extends Controller
 {
@@ -39,26 +40,29 @@ class GitarController extends Controller
     {
         $validateData = $request->validate([
             'codemerk' => 'required',
-            'resep' => 'required',
+            'cat' => 'required',
+            'pemakaian' => 'required',
         ]);
 
         $gitar = new Gitar;
 
         $gitar->codemerk = $request->input('codemerk');
-        $gitar->resep = $request->input('resep');
-        
+        $gitar->cat = $request->input('cat');
+        $gitar->pemakaian = $request->input('pemakaian');
+
         $gitar->save();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Gitar  $gitar
+     * @param  int $gitar
      * @return \Illuminate\Http\Response
      */
-    public function show(Gitar $gitar)
+    public function show($gitar)
     {
-        //
+        $resep = DB::table('gitars')->where('codemerk',$gitar)->get();
+        return response()->json($resep);
     }
 
     /**
@@ -87,11 +91,14 @@ class GitarController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Gitar  $gitar
+     * @param  int  $gitar
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gitar $gitar)
+    public function destroy($id)
     {
-        //
+        $item = DB::table('gitars')->where('id', $id)->first();
+        if($item){
+            DB::table('gitars')->where('id', $id)->delete();
+        }
     }
 }

@@ -14,9 +14,7 @@
                                                 Login
                                             </h1>
                                         </div>
-                                        <b-form
-                                            @submit="checkAdmin"
-                                        >
+                                        <b-form @submit="checkAdmin">
                                             <b-form-group
                                                 id="input-group-1"
                                                 label="Username:"
@@ -38,6 +36,7 @@
                                             >
                                                 <b-form-input
                                                     id="input-2"
+                                                    type="password"
                                                     v-model="form.pass"
                                                     required
                                                     placeholder="Password"
@@ -73,9 +72,9 @@ export default {
     data() {
         return {
             form: {
-                username:'',
-                pass:''
-            },
+                username: "",
+                pass: ""
+            }
         };
     },
     methods: {
@@ -90,7 +89,7 @@ export default {
                 this.form.username = null;
                 this.form.pass = null;
             }
-        },
+        }
     }
 };
 </script>

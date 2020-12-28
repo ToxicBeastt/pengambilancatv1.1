@@ -13,7 +13,13 @@ class GitarsTableSeeder extends Seeder
     {
         DB::table('gitars')->insert([
             'codemerk' => 'FJCE',
-            'resep' => 'PUSS-51221 HV+250',
+            'cat' => 'PUSS-51221 HV',
+            'pemakaian' => 250
+        ]);
+        DB::table('gitars')->insert([
+            'codemerk' => 'FJCE',
+            'cat' => 'PUSS-51221 HV',
+            'pemakaian' => 250
         ]);
     }
 }
