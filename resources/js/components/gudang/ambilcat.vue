@@ -31,6 +31,12 @@
                 </b-form-group>
                 <b-button type="submit" variant="primary">Input</b-button>
                 <b-button type="reset" variant="danger">Reset</b-button>
+                <b-button v-on:click="getResep(temp.jenis_gitar)"
+                    >Testing</b-button
+                >
+                <b-card class="mt-3" header="Form Data Result">
+                    <pre class="m-0">{{ temp }}</pre>
+                </b-card>
             </b-form>
             <div style="margin-top:2vh">
                 Keranjang
@@ -55,7 +61,7 @@
                 </div>
             </div>
         </div>
-        {{ groups}}
+        {{ groups }}
         {{ resep }}
     </div>
 </template>
@@ -74,43 +80,42 @@ export default {
             gitar: [],
             show: true,
             item: [],
-            resep:[],
+            resep: []
         };
     },
     mounted() {
         this.getitem();
         this.getGitar();
-        this.resepgitar();
     },
     computed: {
         listdata() {
-            var x = [];
+            var code = [];
             if (this.gitar.length > 0) {
                 for (var i = 0; i < this.gitar.length; i++) {
-                    x.push(this.gitar[i].codemerk);
+                    if (!code.includes(this.gitar[i].codemerk)) {
+                        code.push(this.gitar[i].codemerk);
+                    }
                 }
             }
-            return x;
+            return code;
         },
         groups() {
-            if(this.item){
+            if (this.item) {
                 return _(this.item)
-                .groupBy('nama')
-                .map((g, nama) => {
-                const quantity = _.sumBy(g, 'netto')
+                    .groupBy("nama")
+                    .map((g, nama) => {
+                        const quantity = _.sumBy(g, "netto");
 
-                return ({
-                    Nama: nama,
-                    quantity,
-                })
-                })
-                .values()
-                .value()
-            }
-            else{
+                        return {
+                            Nama: nama,
+                            quantity
+                        };
+                    })
+                    .values()
+                    .value();
+            } else {
                 return null;
             }
-
         }
     },
     methods: {
@@ -137,23 +142,16 @@ export default {
                     console.log(error);
                 });
         },
-        resepgitar(){
-            // Resep Gitar dipisah jadi array of object cat
-            for(var i = 0;i< this.gitar.length;i++){
-                var x = []
-                x = this.gitar[i].resep.split("|");
-                for (var j = 0; j < x.length; j++){
-                    var y = []; 
-                    y = x[j].split("+");
-                }
-                this.resep.push({
-                    nama: this.gitar[i].nama,
-                    cat:{
-                        jenis: y[0],
-                        net : y[1],
-                    }
+        getResep(codemerk) {
+            axios
+                .get("./Gitar/" + codemerk)
+                .then(response => {
+                    this.resep = response.data;
+                    console.log(response);
                 })
-            }
+                .catch(error => {
+                    console.log(error);
+                });
         },
         onSubmit(evt) {
             evt.preventDefault();

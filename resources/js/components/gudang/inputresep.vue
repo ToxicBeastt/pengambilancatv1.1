@@ -33,7 +33,7 @@
                     id="input-group-5"
                     label="Pemakaian :"
                     label-for="input-5"
-                >   
+                >
                     <b-form-input
                         id="input-5"
                         type="number"
@@ -58,64 +58,52 @@
             </div>
             <b-button type="submit" variant="primary">Submit</b-button>
         </b-form>
-        {{inputs}}
-        {{form}}
+        {{ inputs.cat[0].name }}
+        {{ forms}}
     </div>
 </template>
 <script>
 export default {
     data() {
         return {
-            inputs:{
+            inputs: {
                 name: "",
-                cat: [{
-                    name: "",
-                    use:0,
-                    }]
+                cat: [
+                    {
+                        name: "",
+                        use: 0
+                    }
+                ]
             },
-            forms:{
+            forms: {
                 codemerk: "",
-                resep: ""
+                cat: "",
+                pemakaian: 0
             },
-            barang:[],
+            barang: []
         };
     },
     mounted() {
         this.getitem();
     },
     computed: {
-        form() {
-            return this.combinedata(this.inputs.cat);
-        },
-        listdata(){
-            var x = []
-            if(this.barang.length > 0){
+        listdata() {
+            var x = [];
+            if (this.barang.length > 0) {
                 for (var i = 0; i < this.barang.length; i++) {
                     x.push(this.barang[i].nama);
                 }
             }
-
-            return x
-        },
+            return x;
+        }
     },
     methods: {
         add() {
             this.inputs.cat.push({
                 name: "",
-                use:0,
+                use: 0
             });
             console.log(this.inputs);
-        },
-         combinedata(x) {
-             //hapus
-            var result = "";
-            var temp = "";
-            for (var i = 0; i < x.length; i++) {
-                temp = "";
-                temp = x[i].name + "+" + x[i].use + "|";
-                result = result + temp;
-            }
-            return result;
         },
         getitem() {
             axios
@@ -130,20 +118,25 @@ export default {
         remove(index) {
             this.inputs.cat.splice(index, 1);
         },
-        submitresep(){
+        submitresep() {
             //looping sebanyak inputs hapus this form nya
             this.forms.codemerk = this.inputs.name;
-            this.forms.resep = this.combinedata(this.inputs.cat);
-            axios
-                .post("./Gitar/", this.forms)
-                .then(response => {
-                    console.log(response);
-                    this.$alert("Resep Berhasil di Input");
-                    this.$router.push({ name: 'adminhome' });
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+            for (var i = 0; i < this.inputs.cat.length; i++) {
+                console.log(i)
+                this.forms.cat = this.inputs.cat[i].name;
+                this.forms.pemakaian = this.inputs.cat[i].use;
+                axios
+                    .post("./Gitar/", this.forms)
+                    .then(response => {
+                        console.log(response);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+                this.forms.cat = this.inputs.cat[i].name;
+                this.forms.pemakaian = this.inputs.cat[i].use;
+            }
+            this.$alert("Resep Berhasil di Input");
         }
     }
 };

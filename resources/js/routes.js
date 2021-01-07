@@ -9,6 +9,7 @@ let listresep = require('./components/gudang/listresep.vue').default;
 let ambilcat = require('./components/gudang/ambilcat.vue').default;
 let request = require('./components/gudang/listrequest.vue').default;
 let editresep = require('./components/gudang/editresep.vue').default;
+let detailresep = require('./components/gudang/listDetailResep.vue').default;
 
 export const routes = [
     //BasedPage
@@ -22,6 +23,7 @@ export const routes = [
     {path: '/inputresep', component: inputresep , name: 'inputresep' },
     {path: '/listresep', component: listresep , name: 'listresep' },
     {path: '/editresep/:id', component: editresep , name: 'editresep' },
+    {path: '/detailresep/:id  ', component: detailresep , name: 'detailresep' },
     //Request
     {path: '/ambilcat', component: ambilcat , name: 'ambilcat' },
     {path: '/request', component: request , name: 'request' },
